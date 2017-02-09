@@ -1,0 +1,14 @@
+docker network create --subnet 10.10.10.0/24 --gateway 10.10.10.254 mybridge01
+
+docker network inspect mybridge02
+
+docker network rm mybridge02
+
+docker network create --subnet 10.10.0.0/16 --gateway 10.10.10.254 --ip-range=10.10.4.0/24 --driver=bridge --label=host4network bridge04
+
+docker network inspect bridge04
+
+docker run -it --name nettest1 --net bridge04 centos:latest /bin/bash
+
+
+docker run -it --name nettest2 --net bridge04 --ip 10.10.4.100  centos:latest /bin/bash
