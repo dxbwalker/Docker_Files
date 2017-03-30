@@ -12,3 +12,29 @@ docker run -it --name nettest1 --net bridge04 centos:latest /bin/bash
 
 
 docker run -it --name nettest2 --net bridge04 --ip 10.10.4.100  centos:latest /bin/bash
+
+docker top 2d3bf97856ff
+
+docker stats  2d3bf97856ff
+
+docker commit 98d0d4ccd53f centos:mine
+
+docker save --output centos.latest.tar centos:latest
+
+gzip centos.latest.tar
+
+docker load --input centos.latest.tar
+
+docker tag mine/cenot:v1.0 dd.image/cenotos:v1.0a
+
+docker push dxbwaler/mycentos
+
+docker login --username=dxbwaler
+
+docker logout
+
+docker run -it --dns=8.8.8.8 --name="ddvm1" dxbwaler/mycentos /bin/bash
+
+docker run -it --dns=8.8.8.8 --dns-search="mydoamin.local" --name="ddvm4" -v /local_vol -v /Users/ddadmin/:/remote_vol  dxbwaler/mycentos /bin/bash
+
+2954a81f0b9d44d79f9f364273cb8671
